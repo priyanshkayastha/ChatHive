@@ -7,25 +7,27 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { axiosInstance } from "../lib/axios";
+import { signup } from "../lib/api";
 const SignUpPage = () => {
   const [signupData, setSignupData] = useState({
-    fullname: "",
+    fullName: "",
     email: "",
     password: "",
   });
   const queryClient = useQueryClient();
 
-  const { mutate, isPending, error } = useMutation({
-    mutationFn: async () => {
-      const response = await axiosInstance.post("auth/signup", signupData);
-      return response.data;
-    },
+  const {
+    mutate: signupMutation,
+    isPending,
+    error,
+  } = useMutation({
+    mutationFn: signup,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["authUser"] }),
   });
 
   const handleSignup = (e) => {
     e.preventDefault();
-    mutate();
+    signupMutation(signupData);
   };
 
   return (
@@ -43,6 +45,13 @@ const SignUpPage = () => {
               ChatHive
             </span>
           </div>
+
+          {/* Error message */}
+          {error && (
+            <div className="alert alert-error mb-4">
+              <span>{error.response.data.message}</span>
+            </div>
+          )}
 
           <div className="w-full">
             ...
@@ -64,11 +73,11 @@ const SignUpPage = () => {
                       type="text"
                       placeholder="Your Name"
                       className="input input-bordered w-full"
-                      value={signupData.fullname}
+                      value={signupData.fullName}
                       onChange={(e) =>
                         setSignupData({
                           ...signupData,
-                          fullname: e.target.value,
+                          fullName: e.target.value,
                         })
                       }
                       required
@@ -134,9 +143,17 @@ const SignUpPage = () => {
                   </div>
 
                   {/* Submit button  */}
-                  <button type="submit" className="btn btn-primary w-full">
-                    {isPending?"Signing up" : "Create Account"}
-                  </button>
+              <button type="submit" className="btn btn-primary w-full" disabled={isPending}>
+  {isPending ? (
+    <>
+      <span className="loading loading-spinner loading-sm mr-2"></span>
+      Creating Account...
+    </>
+  ) : (
+    "Create Account"
+  )}
+</button>
+
 
                   <div className="text-center mt-4">
                     <p className="text-sm">

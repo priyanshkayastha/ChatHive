@@ -3,6 +3,7 @@ import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 
 export async function signup(req, res) {
+  
   const { email, password, fullName } = req.body;
   try {
     if (!email || !password || !fullName) {
