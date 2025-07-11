@@ -54,7 +54,7 @@ const SignUpPage = () => {
           )}
 
           <div className="w-full">
-            ...
+            
             <form onSubmit={handleSignup}>
               <div className="space-y-4">
                 <div>
