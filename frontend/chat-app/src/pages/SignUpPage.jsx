@@ -8,26 +8,31 @@ import {
 } from "@tanstack/react-query";
 import { axiosInstance } from "../lib/axios";
 import { signup } from "../lib/api";
+import useSignup from "../hooks/useSignup";
 const SignUpPage = () => {
   const [signupData, setSignupData] = useState({
     fullName: "",
     email: "",
     password: "",
   });
-  const queryClient = useQueryClient();
 
-  const {
-    mutate: signupMutation,
-    isPending,
-    error,
-  } = useMutation({
-    mutationFn: signup,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["authUser"] }),
-  });
+
+  // const queryClient = useQueryClient();
+
+  // const {
+  //   mutate: signupMutation,
+  //   isPending,
+  //   error,
+  // } = useMutation({
+  //   mutationFn: signup,
+  //   onSuccess: () => queryClient.invalidateQueries({ queryKey: ["authUser"] }),
+  // });
+
+  const {isPending,error,signupMutate}=useSignup()
 
   const handleSignup = (e) => {
     e.preventDefault();
-    signupMutation(signupData);
+    signupMutate(signupData);
   };
 
   return (

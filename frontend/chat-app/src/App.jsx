@@ -13,6 +13,7 @@ import { axiosInstance } from "./lib/axios.js";
 import PageLoader from "./components/PageLoader.jsx";
 import useAuthUser from "./hooks/useAuthUser.js";
 import { Home } from "lucide-react";
+import Layout from "./components/Layout.jsx";
 
 const App = () => {
   //tanstack query
@@ -31,7 +32,9 @@ const App = () => {
           path="/"
           element={
             isAuthenticated && isOnboarded ? (
-              <HomePage />
+              <Layout showSidebar={true}>
+                <HomePage />
+              </Layout>
             ) : (
               <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
             )
