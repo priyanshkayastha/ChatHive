@@ -14,19 +14,20 @@ import PageLoader from "./components/PageLoader.jsx";
 import useAuthUser from "./hooks/useAuthUser.js";
 import { Home } from "lucide-react";
 import Layout from "./components/Layout.jsx";
+import { useThemeStore } from "./store/useThemeStore.js";
 
 const App = () => {
   //tanstack query
 
   const { isLoading, authUser } = useAuthUser();
-
+  const {theme}=useThemeStore()
   const isAuthenticated = Boolean(authUser);
   const isOnboarded = authUser?.isOnboarded;
 
   if (isLoading) return <PageLoader></PageLoader>;
 
   return (
-    <div className="h-screen" data-theme="night">
+    <div className="h-screen" data-theme={theme}>
       <Routes>
         <Route
           path="/"
