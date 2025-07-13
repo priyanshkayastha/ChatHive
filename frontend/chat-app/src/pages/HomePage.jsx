@@ -9,7 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import { CheckCircleIcon, MapPinIcon, UserPlusIcon, UsersIcon } from "lucide-react";
 import NoFriendsFound from "../components/NoFriendsFound";
-import { getLanguageFlag } from "../components/FriendCard";
+import FriendCard, { getLanguageFlag } from "../components/FriendCard";
 import { capitialize } from "../lib/utils";
 import { sendFriendRequest } from "../../../../backend/src/controllers/user.controller";
 
