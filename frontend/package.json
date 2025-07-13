@@ -3,6 +3,7 @@
     "vite": "^4.5.0"
   },
   "dependencies": {
+    "chat-app": "file:..",
     "zustand": "^5.0.6"
   }
 }

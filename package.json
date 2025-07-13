@@ -4,5 +4,18 @@
     "react-dom": "^18.3.1",
     "stream-chat": "^9.11.0",
     "stream-chat-react": "^13.2.2"
-  }
+  },
+  "name": "chat-app",
+  "version": "1.0.0",
+  "description": "<h1 align=\"center\">✨ Fullstack Chat & Video Calling App ✨</h1>",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+     "build": "npm install --prefix backend && npm install --prefix frontend/chat-app && npm run build --prefix frontend/chat-app",
+      "start": "npm run start --prefix backend"
+
+    },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
