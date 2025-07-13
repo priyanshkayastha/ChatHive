@@ -25,6 +25,8 @@ export const protectedRoute = async (req, res, next) => {
 
     req.user = user;
     next();
+       console.log("Authenticated user:", user._id); // ✅ Log to confirm
+
   } catch (error) {
     console.log("Error in protectedRoute Middleware", error);
     res.status(500).json({

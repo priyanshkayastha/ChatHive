@@ -29,3 +29,32 @@ export const completeOnboarding = async (userData) => {
   const response = await axiosInstance.post("auth/onboarding", userData);
   return response.data;
 };
+
+export const getUserFriends = async () => {
+  const response = await axiosInstance.get("users/friends");
+  return response.data;
+};
+
+
+
+export const getRecommendedUser = async () => {
+  try {
+    const response = await axiosInstance.get("/users");
+    return response.data.recommendedUsers || [];
+  } catch (error) {
+    console.error("Error in getRecommendedUser:", error.message);
+    return [];
+  }
+};
+
+
+export const getOutgoingFriendReqs = async () => {
+  const response = await axiosInstance.get("/users/outgoing-friend-request");
+  return response.data;
+};
+
+
+export const sentFriendRequest = async (userId) => {
+  const response = await axiosInstance.post(`users/friend-request/${userId}`);
+  return response.data;
+};
