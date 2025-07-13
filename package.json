@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@stream-io/video-react-sdk": "^1.18.12",
     "react-dom": "^18.3.1",
     "stream-chat": "^9.11.0",
     "stream-chat-react": "^13.2.2"
