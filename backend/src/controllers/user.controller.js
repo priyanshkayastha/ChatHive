@@ -190,9 +190,9 @@ export async function getFriendRequests(req, res) {
     }).populate("sender", "fullName profilePic nativeLanguage learningLanguage");
 
     const acceptedReqs = await FriendRequest.find({
-      recipient: req.user.id,
+      sender: req.user.id,
       status: "accepted",
-    }).populate("sender", "fullName profilePic");
+    }).populate("recipient", "fullName profilePic");
 
     return res.status(200).json({ incomingReqs, acceptedReqs });
   } catch (error) {
